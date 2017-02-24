@@ -1,0 +1,20 @@
+Pentru implementare am folosit 3 clase.
+
+Clasa Main:
+In aceasta clasa se creeaza generatorii si se da drumul la citirea din fisiere. Tot aici se iau elementele din coada (daca exista) si se dau workerilor din pool pentru a fi procesate. Dupa ce au fost
+procesate toate evenimentele se sorteaza cele 4 liste ce contin rezultatele celor 4 tipuri de evenimente si se scriu in fisierele corespunzatoare.
+Cele 4 liste cu rezultatele finale sunt liste synchronized fiindca toate thread-urile au acces la ele insa operatiile de adaugare trebuie facute de thread-uri pe rand.
+Numarul de generatori este egal cu numarul de fisiere din lista de argumente (cate un generator pentru fiecare fisier).
+Numarul de evenimente din toate fisierele este egal cu numarul de fisiere inmultit cu numarul de evenimente dintr-un fisier.
+
+Clasa Generator;
+Aceasta clasa realizeaza citirea propriu-zisa dintr-un fisier si adauga evenimente in coada.
+
+Clasa Event:
+Aceasta clasa contine cele 4 “operatii” posibile precum si cele 4 liste de rezultate. Dupa ce un eveniment a fost procesat conform tipului sau, acesta este adaugat in lista de rezultate corespunzatoare.
+Pentru FACT, FIB si SQUARE se calculeaza succesiv numere din ce in ce mai mari pana cand se depaseste valoarea N.
+Pentru PRIME se verifica daca sunt prime numere din ce in ce mai mici incepand cu N (un numar prim va fi mai aproape de N decat de 0 de aceea verificarea se face in sens invers).
+Clasa mai contine 2 functii ajutatoare isPrime si getFact ce verifica daca un numar este prim si calculeaza factorialul unui numar.
+
+Fisierul jar se creeaza folosind comanda “ant compile jar”. Calea catre fisierele de input trebuie sa fie relativa la folderul in care se afla fisierul jar. Exista si o comanda “ant clean” care sterge
+fisierele generate in urma compilarii.
